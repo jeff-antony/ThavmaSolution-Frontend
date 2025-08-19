@@ -2,6 +2,8 @@ const API_BASE_URL =
   (import.meta as any).env?.VITE_API_BASE_URL ||
   ((import.meta as any).env?.PROD ? 'https://thavma-solution-backend.vercel.app' : 'http://localhost:3001');
 
+const LOGIN_PATH = (import.meta as any).env?.VITE_LOGIN_PATH || '/login';
+
 export interface Project {
   _id: string;
   id?: number; // For backward compatibility
@@ -81,7 +83,7 @@ class ApiService {
 
   // Authentication
   async login(credentials: LoginCredentials): Promise<LoginResponse> {
-    const response = await this.request<LoginResponse>('/login', {
+    const response = await this.request<LoginResponse>(LOGIN_PATH, {
       method: 'POST',
       body: JSON.stringify(credentials),
     });
