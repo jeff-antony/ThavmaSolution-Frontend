@@ -1,4 +1,6 @@
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL =
+  (import.meta as any).env?.VITE_API_BASE_URL ||
+  ((import.meta as any).env?.PROD ? 'https://thavma-solution-backend.vercel.app' : 'http://localhost:3001');
 
 export interface Project {
   _id: string;
